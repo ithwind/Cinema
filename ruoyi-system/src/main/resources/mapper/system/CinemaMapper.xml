@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.CinemaMapper">
+
+    <resultMap id="CinemaMap" type="Cinema">
+        <id column="cinema_id" property="cinemaId"/>
+        <result column="cinema_name" property="cinemaName"/>
+        <result column="cinema_addr" property="cinemaAddr"/>
+        <result column="longitude" property="longitude"/>
+        <result column="altitude" property="altitude"/>
+        <result column="cinema_hall" property="cinemaHall"/>
+        <result column="cinema_tag" property="cinemaTag"/>
+    </resultMap>
+
+    <select id="selectCinemaList" resultMap="CinemaMap">
+        SELECT * FROM cinema
+    </select>
+
+    <!-- 通过id查询影院信息 -->
+    <select id="selectCinemaById" parameterType="int" resultMap="CinemaMap">
+        SELECT *
+        FROM cinema
+        WHERE cinema_id = #{cinemaId}
+    </select>
+
+
+    <!-- 修改指定 id 影院信息 -->
+    <update id="updateCinema" parameterType="com.ruoyi.system.domain.Cinema">
+        UPDATE cinema
+        SET cinema_name = #{cinemaName},
+            cinema_addr = #{cinemaAddr},
+            cinema_tag = #{cinemaTag}
+        WHERE cinema_id = #{cinemaId}
+    </update>
+
+    <insert id="insertCinema" parameterType="com.ruoyi.system.domain.Cinema">
+        INSERT INTO cinema (cinema_name, cinema_addr, longitude, altitude, cinema_hall, cinema_tag)
+        VALUES (#{cinemaName}, #{cinemaAddr}, #{longitude}, #{altitude}, #{cinemaHall}, #{cinemaTag})
+    </insert>
+
+    <delete id="deleteCinema" parameterType="int">
+        DELETE FROM cinema WHERE cinema_id = #{cinemaId}
+    </delete>
+
+    <select id="selectCinemaByCinemaName" resultMap="CinemaMap" parameterType="java.lang.String">
+        SELECT * FROM cinema WHERE cinema_name LIKE CONCAT('%', #{cinemaName}, '%')
+    </select>
+
+</mapper>

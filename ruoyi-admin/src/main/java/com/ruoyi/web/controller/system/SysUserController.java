@@ -2,6 +2,7 @@ package com.ruoyi.web.controller.system;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,10 @@ import com.ruoyi.common.enums.BusinessType;
 import com.ruoyi.common.utils.SecurityUtils;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.common.utils.poi.ExcelUtil;
-import com.ruoyi.system.service.ISysDeptService;
-import com.ruoyi.system.service.ISysPostService;
-import com.ruoyi.system.service.ISysRoleService;
-import com.ruoyi.system.service.ISysUserService;
+import com.ruoyi.system.service.ruoyi.ISysDeptService;
+import com.ruoyi.system.service.ruoyi.ISysPostService;
+import com.ruoyi.system.service.ruoyi.ISysRoleService;
+import com.ruoyi.system.service.ruoyi.ISysUserService;
 
 /**
  * 用户信息
@@ -41,16 +42,16 @@ import com.ruoyi.system.service.ISysUserService;
 @RequestMapping("/system/user")
 public class SysUserController extends BaseController
 {
-    @Autowired
+    @Resource
     private ISysUserService userService;
 
-    @Autowired
+    @Resource
     private ISysRoleService roleService;
 
-    @Autowired
+    @Resource
     private ISysDeptService deptService;
 
-    @Autowired
+    @Resource
     private ISysPostService postService;
 
     /**

@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import com.ruoyi.common.core.domain.entity.SysRole;
 import com.ruoyi.common.core.domain.entity.SysUser;
-import com.ruoyi.system.service.ISysMenuService;
-import com.ruoyi.system.service.ISysRoleService;
+import com.ruoyi.system.service.ruoyi.ISysMenuService;
+import com.ruoyi.system.service.ruoyi.ISysRoleService;
 
 /**
  * 用户权限处理

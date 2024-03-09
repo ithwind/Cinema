@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.CinemaFilmMapper">
+    <select id="selectAllCinemaFilms" resultType="com.ruoyi.system.domain.CinemaFilm">
+        SELECT * FROM cinema_film
+    </select>
+    <select id="selectCinemaFilmById" parameterType="int" resultType="com.ruoyi.system.domain.CinemaFilm">
+        SELECT * FROM cinema_film WHERE cinemaFilmId = #{cinemaFilmId}
+    </select>
+    <update id="updateCinemaFilm" parameterType="com.ruoyi.system.domain.CinemaFilm">
+        UPDATE cinema_film
+        SET
+            filmPrice = #{filmPrice},
+            discountPrice = #{discountPrice},
+            cinemaHall = #{cinemaHall},
+            playDate = #{playDate},
+            beginTime = #{beginTime},
+            endTime = #{endTime}
+        WHERE
+            cinemaFilmId = #{cinemaFilmId}
+    </update>
+    <delete id="deleteCinemaFilm" parameterType="int">
+        DELETE FROM cinema_film WHERE cinemaFilmId = #{cinemaFilmId}
+    </delete>
+    <insert id="insertCinemaFilm" parameterType="CinemaFilm">
+        INSERT INTO cinema_film (filmId, cinemaId, filmPrice, discountPrice, cinemaHall, playDate, beginTime, endTime)
+        VALUES (#{filmId}, #{cinemaId}, #{filmPrice}, #{discountPrice}, #{cinemaHall}, #{playDate}, #{beginTime}, #{endTime})
+    </insert>
+
+    <select id="selectCinemaFilmsById" parameterType="int" resultType="com.ruoyi.system.domain.CinemaFilm">
+        SELECT * FROM cinema_film WHERE filmId = #{filmId}
+    </select>
+
+    <select id="selectCinemaFilmId" resultType="int">
+        SELECT cinemaFilmId FROM cinema_film WHERE cinemaId = #{cinemaId} AND filmId = #{filmId}
+    </select>
+</mapper>

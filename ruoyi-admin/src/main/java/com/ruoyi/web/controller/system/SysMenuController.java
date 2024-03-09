@@ -19,7 +19,9 @@ import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.core.domain.entity.SysMenu;
 import com.ruoyi.common.enums.BusinessType;
 import com.ruoyi.common.utils.StringUtils;
-import com.ruoyi.system.service.ISysMenuService;
+import com.ruoyi.system.service.ruoyi.ISysMenuService;
+
+import javax.annotation.Resource;
 
 /**
  * 菜单信息
@@ -30,7 +32,7 @@ import com.ruoyi.system.service.ISysMenuService;
 @RequestMapping("/system/menu")
 public class SysMenuController extends BaseController
 {
-    @Autowired
+    @Resource
     private ISysMenuService menuService;
 
     /**

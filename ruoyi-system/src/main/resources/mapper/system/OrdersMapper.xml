@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.OrdersMapper">
+    <!-- 定义结果映射 -->
+    <resultMap id="orderResultMap" type="com.ruoyi.system.domain.Orders">
+        <id property="orderId" column="order_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="cinemaFilmId" column="cinema_film_id"/>
+        <result property="ticketNum" column="ticket_num"/>
+        <result property="ticketPrice" column="ticket_price"/>
+        <result property="filmName" column="film_name"/>
+        <result property="filmId" column="film_id"/>
+        <result property="seat" column="seat"/>
+        <result property="orderDate" column="order_date" jdbcType="TIMESTAMP"/>
+        <result property="cinemaAddr" column="cinema_addr"/>
+        <result property="cinemaName" column="cinema_name"/>
+        <result property="cinemaId" column="cinema_id"/>
+    </resultMap>
+    <select id="selectOrders" resultMap="orderResultMap">
+        SELECT * FROM orders
+    </select>
+    <select id="selectOrdersByUserName" parameterType="String" resultMap="orderResultMap">
+        SELECT * FROM orders WHERE user_name = #{userName}
+    </select>
+    <!-- 查询指定电影id的订单总价（ticket_price * ticket_num） -->
+    <select id="selectBoxOfficeByFilmId" resultType="int">
+        SELECT SUM(ticket_price * ticket_num) FROM orders WHERE film_id = #{filmId}
+    </select>
+
+    <!-- 新增订单 -->
+    <insert id="insertOrder" useGeneratedKeys="true" keyProperty="orderId">
+        INSERT INTO orders(
+            order_id, user_name, cinema_film_id, ticket_num, ticket_price, film_name, film_id, seat, order_date, cinema_addr, cinema_name, cinema_id
+        )
+        VALUES (
+                   #{orderId}, #{userName}, #{cinemaFilmId}, #{ticketNum}, #{ticketPrice}, #{filmName}, #{filmId}, #{seat}, #{orderDate}, #{cinemaAddr}, #{cinemaName}, #{cinemaId}
+               )
+    </insert>
+</mapper>

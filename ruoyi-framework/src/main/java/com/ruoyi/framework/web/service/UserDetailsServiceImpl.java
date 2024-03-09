@@ -13,7 +13,7 @@ import com.ruoyi.common.enums.UserStatus;
 import com.ruoyi.common.exception.ServiceException;
 import com.ruoyi.common.utils.MessageUtils;
 import com.ruoyi.common.utils.StringUtils;
-import com.ruoyi.system.service.ISysUserService;
+import com.ruoyi.system.service.ruoyi.ISysUserService;
 
 /**
  * 用户验证处理

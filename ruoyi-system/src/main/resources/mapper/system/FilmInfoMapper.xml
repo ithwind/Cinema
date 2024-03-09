@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.FilmInfoMapper">
+    <select id="selectFilmList" resultType="com.ruoyi.system.domain.FilmInfo">
+        select * from film_info
+    </select>
+
+    <select id="selectFilmById" resultType="com.ruoyi.system.domain.FilmInfo">
+        SELECT * FROM film_info WHERE filmId = #{id}
+    </select>
+
+    <update id="updateFilmById" parameterType="com.ruoyi.system.domain.dto.UpdateFilmDto">
+        UPDATE film_info
+        <set>
+            <if test="filmName != null">filmName = #{filmName},</if>
+            <if test="filmEnName != null">filmEnName = #{filmEnName},</if>
+            <if test="filmLanguage != null">filmLanguage = #{filmLanguage},</if>
+        </set>
+        WHERE filmId = #{filmId}
+    </update>
+
+    <insert id="insertFilm" parameterType="com.ruoyi.system.domain.FilmInfo">
+        INSERT INTO film_info (
+        <if test="filmName != null">filmName,</if>
+        <if test="filmEnName != null">filmEnName,</if>
+        <if test="filmUrl != null">filmUrl,</if>
+        <if test="filmLanguage != null">filmLanguage,</if>
+        <if test="filmType != null">filmType,</if>
+        <if test="filmTime != null">filmTime,</if>
+        <if test="releaseLoc != null">releaseLoc,</if>
+        <if test="releaseTime != null">releaseTime,</if>
+        <if test="filmDes != null">filmDes,</if>
+        <if test="filmActor != null">filmActor</if>
+        )
+        VALUES (
+        <if test="filmName != null">#{filmName},</if>
+        <if test="filmEnName != null">#{filmEnName},</if>
+        <if test="filmUrl != null">#{filmUrl},</if>
+        <if test="filmLanguage != null">#{filmLanguage},</if>
+        <if test="filmType != null">#{filmType},</if>
+        <if test="filmTime != null">#{filmTime},</if>
+        <if test="releaseLoc != null">#{releaseLoc},</if>
+        <if test="releaseTime != null">#{releaseTime},</if>
+        <if test="filmDes != null">#{filmDes},</if>
+        <if test="filmActor != null">#{filmActor}</if>
+        )
+    </insert>
+
+    <delete id="deleteFilms" parameterType="int">
+        delete from film_info where filmId = #{filmId}
+    </delete>
+
+    <select id="selectFilmsByFilmName" parameterType="java.lang.String" resultType="com.ruoyi.system.domain.FilmInfo">
+        SELECT * FROM film_info WHERE filmName = #{filmName}
+    </select>
+</mapper> 
