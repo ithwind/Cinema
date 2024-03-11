@@ -1,10 +1,11 @@
 package com.ruoyi.system.mapper;
 
 import com.ruoyi.system.domain.Seat;
-import io.lettuce.core.dynamic.annotation.Param;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Locale;
 
 @Mapper
 public interface SeatMapper {
@@ -30,4 +31,12 @@ public interface SeatMapper {
      * @param seatId 座位Id
      */
     int updateSeatStatus(int seatId);
+
+    /**
+     * 获取座位
+     * @param cinemaId 影院Id
+     * @param filmId 电影Id
+     */
+    List<Seat> getSeats(@Param("cinemaId") int cinemaId, @Param("filmId") int filmId);
+
 }

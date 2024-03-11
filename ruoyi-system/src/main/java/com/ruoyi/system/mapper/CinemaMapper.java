@@ -2,12 +2,14 @@ package com.ruoyi.system.mapper;
 
 import com.ruoyi.system.domain.Cinema;
 import com.ruoyi.system.domain.dto.UpdateCinemaDto;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 /**
  * 电影院信息控制层
  */
+@Mapper
 public interface CinemaMapper {
     /**
      * 获取全部电影院信息

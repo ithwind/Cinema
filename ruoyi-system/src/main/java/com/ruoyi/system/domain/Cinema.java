@@ -7,7 +7,8 @@ import java.math.BigDecimal;
 /**
  * 影院信息类
  */
-public class Cinema{
+public class Cinema extends BaseEntity{
+    private static final long serialVersionUID = 1L;
     /**
      * 影院代码
      */

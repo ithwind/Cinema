@@ -25,7 +25,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 允许所有人访问/user/login，无需认证
         http
                 .authorizeRequests()
-                .antMatchers("/user/login").permitAll()
+                .antMatchers("/user/**").permitAll()
+                .antMatchers("/user/film/list").permitAll()
                 // 其他请求需要身份验证
                 .anyRequest().authenticated()
                 // 关闭CSRF防护（实际项目中请按需开启）

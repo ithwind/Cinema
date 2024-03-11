@@ -1,4 +1,4 @@
-package com.ruoyi.system.service.impl;
+package com.ruoyi.system.service.ruoyi.impl;
 
 import java.util.Comparator;
 import java.util.List;

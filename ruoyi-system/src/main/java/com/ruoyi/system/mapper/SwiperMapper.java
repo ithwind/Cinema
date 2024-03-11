@@ -1,9 +1,10 @@
 package com.ruoyi.system.mapper;
 
 import com.ruoyi.system.domain.Swiper;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-
+@Mapper
 public interface SwiperMapper {
     /**
      * 获取全部轮播图

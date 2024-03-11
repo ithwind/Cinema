@@ -19,6 +19,7 @@ import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.beans.Transient;
 import java.util.*;
 
 @Service
@@ -44,6 +45,7 @@ public class OrderServiceImpl implements IOrderService {
     // 座位与并发锁绑定
     private  transient Map<Seat, RLock> seatRLocks;
     @Override
+    @Transient
     public int placeOrder(OrderDto orderDto) {
         InitSeatLocks(orderDto.getSeats(), orderDto.getCinemaId(), orderDto.getFilmId());
         int cinemaId = orderDto.getCinemaId();

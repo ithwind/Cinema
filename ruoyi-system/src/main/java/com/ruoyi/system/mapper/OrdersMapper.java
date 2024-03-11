@@ -2,9 +2,10 @@ package com.ruoyi.system.mapper;
 
 
 import com.ruoyi.system.domain.Orders;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-
+@Mapper
 public interface OrdersMapper {
     /**
      * 查询所有order

@@ -1,10 +1,11 @@
 package com.ruoyi.system.mapper;
 
 import io.lettuce.core.dynamic.annotation.Param;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.nio.file.LinkOption;
 import java.util.List;
-
+@Mapper
 public interface OrderDetailsMapper {
     /**
      * 通过orderId查询seatId

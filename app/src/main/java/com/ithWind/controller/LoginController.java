@@ -1,5 +1,6 @@
 package com.ithWind.controller;
 
+import com.ithWind.common.UserContext;
 import com.ithWind.domain.req.LoginReq;
 import com.ithWind.service.login.ILoginService;
 import com.ruoyi.common.core.controller.BaseController;
@@ -18,7 +19,5 @@ public class LoginController extends BaseController {
     public AjaxResult login(@RequestBody LoginReq req) {
         return success(loginService.login(req));
     }
-
-
 }
 

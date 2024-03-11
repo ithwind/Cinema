@@ -13,6 +13,7 @@
         <result property="rowNum" column="row_num"/>
         <result property="columnId" column="column_id"/>
         <result property="cinemaId" column="cinema_id"/>
+        <result property="filmId" column="film_id"/>
     </resultMap>
     <select id="selectSeatsById" parameterType="int" resultMap="seatResultMap">
         SELECT * FROM seat WHERE seat_id IN
@@ -35,4 +36,8 @@
         SET status = 2   <!-- 假设 newStatus 是你要更新的状态 -->
         WHERE seat_id = #{seatId}
     </update>
+    
+    <select id="getSeats" resultMap="seatResultMap">
+        SELECT * FROM seat WHERE  cinema_id = #{cinemaId} AND film_id = #{filmId}
+    </select>
 </mapper>

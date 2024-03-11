@@ -3,9 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.system.mapper.CinemaFilmMapper">
+
     <select id="selectAllCinemaFilms" resultType="com.ruoyi.system.domain.CinemaFilm">
         SELECT * FROM cinema_film
     </select>
+
     <select id="selectCinemaFilmById" parameterType="int" resultType="com.ruoyi.system.domain.CinemaFilm">
         SELECT * FROM cinema_film WHERE cinemaFilmId = #{cinemaFilmId}
     </select>
@@ -24,7 +26,7 @@
     <delete id="deleteCinemaFilm" parameterType="int">
         DELETE FROM cinema_film WHERE cinemaFilmId = #{cinemaFilmId}
     </delete>
-    <insert id="insertCinemaFilm" parameterType="CinemaFilm">
+    <insert id="insertCinemaFilm" parameterType="com.ruoyi.system.domain.CinemaFilm">
         INSERT INTO cinema_film (filmId, cinemaId, filmPrice, discountPrice, cinemaHall, playDate, beginTime, endTime)
         VALUES (#{filmId}, #{cinemaId}, #{filmPrice}, #{discountPrice}, #{cinemaHall}, #{playDate}, #{beginTime}, #{endTime})
     </insert>
@@ -35,5 +37,9 @@
 
     <select id="selectCinemaFilmId" resultType="int">
         SELECT cinemaFilmId FROM cinema_film WHERE cinemaId = #{cinemaId} AND filmId = #{filmId}
+    </select>
+    
+    <select id="selectFilmInfosByCinemaId" resultType="int">
+        SELECT filmId FROM cinema_film WHERE cinemaId = #{cinemaId};
     </select>
 </mapper>

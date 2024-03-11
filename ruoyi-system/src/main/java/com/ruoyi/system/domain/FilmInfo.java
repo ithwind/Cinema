@@ -1,12 +1,15 @@
 package com.ruoyi.system.domain;
 
 
+import com.ruoyi.common.core.domain.BaseEntity;
+
 import java.util.Date;
 
 /**
  * 电影信息表
  */
-public class FilmInfo {
+public class FilmInfo extends BaseEntity {
+    private static final long serialVersionUID = 1L;
     /**
      * 电影id
      */

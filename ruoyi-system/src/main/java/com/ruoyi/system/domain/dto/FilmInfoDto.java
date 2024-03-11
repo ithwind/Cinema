@@ -3,9 +3,11 @@ package com.ruoyi.system.domain.dto;
 import com.ruoyi.common.core.domain.BaseEntity;
 import com.ruoyi.system.domain.FilmInfo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 public class FilmInfoDto extends FilmInfo {
+    private static final long serialVersionUID = 1L;
     /**
      * 票房总额
      */

@@ -2,12 +2,14 @@ package com.ruoyi.system.mapper;
 
 import com.ruoyi.system.domain.FilmInfo;
 import com.ruoyi.system.domain.dto.UpdateFilmDto;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 /**
  * 电影信息 控制层
  */
+@Mapper
 public interface FilmInfoMapper{
     /**
      * 查询有电影

@@ -1,12 +1,15 @@
 package com.ruoyi.system.mapper;
 
 import com.ruoyi.system.domain.CinemaFilm;
+import com.ruoyi.system.domain.FilmInfo;
 import com.ruoyi.system.domain.dto.CinemaFilmDto;
 import io.lettuce.core.dynamic.annotation.Param;
+import org.apache.ibatis.annotations.Mapper;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.security.core.parameters.P;
 
 import java.util.List;
-
+@Mapper
 public interface CinemaFilmMapper {
     /**
      * 查询所有的电影和影院的关联数据
@@ -36,4 +39,8 @@ public interface CinemaFilmMapper {
      * 获取电影和影院关联id
      */
     public int selectCinemaFilmId(@Param("cinemaId") int cinemaId, @Param("filmId") int filmId);
+    /**
+     * 通过影院id查询电影
+     */
+    public List<Integer> selectFilmInfosByCinemaId(@Param("cinemaId")int cinemaId);
 }
