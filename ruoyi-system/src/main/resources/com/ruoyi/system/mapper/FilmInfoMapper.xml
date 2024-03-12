@@ -9,7 +9,7 @@
     </select>
 
     <select id="selectFilmById" resultType="com.ruoyi.system.domain.FilmInfo">
-        SELECT * FROM film_info WHERE filmId = #{id}
+        SELECT * FROM film_info WHERE filmId = #{filmId}
     </select>
 
     <update id="updateFilmById" parameterType="com.ruoyi.system.domain.dto.UpdateFilmDto">

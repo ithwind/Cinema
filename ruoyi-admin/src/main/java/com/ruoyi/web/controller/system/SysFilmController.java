@@ -53,7 +53,7 @@ public class SysFilmController extends BaseController {
     }
 
     @PreAuthorize("@ss.hasPermi('system:film:query')")
-    @GetMapping("/{filmName}")
+    @GetMapping("/name/{filmName}")
     public AjaxResult filmByFilmName(@PathVariable("filmName") String filmName) {
         List<FilmInfo> filmInfos = filmService.selectFilmsByFilmName(filmName);
         return success(filmInfos);

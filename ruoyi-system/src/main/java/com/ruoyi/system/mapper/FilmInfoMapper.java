@@ -37,6 +37,7 @@ public interface FilmInfoMapper{
      * 通过id删除电影
      */
     public int deleteFilms(int FilmId);
+
     /**
      * 根据电影名称查询电影
      */
