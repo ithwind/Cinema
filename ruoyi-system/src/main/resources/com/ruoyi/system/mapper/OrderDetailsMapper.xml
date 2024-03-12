@@ -10,4 +10,5 @@
     <insert id="insertOrderDetail">
         INSERT INTO orderdetails (order_id, seat_id) VALUES (#{orderId}, #{seatId});
     </insert>
+
 </mapper>

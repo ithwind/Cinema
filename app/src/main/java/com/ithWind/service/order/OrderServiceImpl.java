@@ -1,8 +1,10 @@
 package com.ithWind.service.order;
 
 import com.ithWind.common.UserContext;
+import com.ithWind.domain.OrderVo;
 import com.ithWind.domain.dto.UserInfo;
 import com.ithWind.domain.req.OrderDto;
+import com.ruoyi.common.core.redis.RedisCache;
 import com.ruoyi.common.exception.ServiceException;
 import com.ruoyi.system.domain.Cinema;
 import com.ruoyi.system.domain.FilmInfo;
@@ -17,9 +19,9 @@ import com.ruoyi.system.service.film.ISysFilmService;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.beans.Transient;
 import java.util.*;
 
 @Service
@@ -38,6 +40,8 @@ public class OrderServiceImpl implements IOrderService {
     private OrdersMapper ordersMapper;
     @Resource
     private OrderDetailsMapper orderDetailsMapper;
+    @Resource
+    private RedisCache redisCache;
     // 座位可用
     private static final int AVAILABLE = 0;
 
@@ -45,7 +49,7 @@ public class OrderServiceImpl implements IOrderService {
     // 座位与并发锁绑定
     private  transient Map<Seat, RLock> seatRLocks;
     @Override
-    @Transient
+    @Transactional
     public int placeOrder(OrderDto orderDto) {
         InitSeatLocks(orderDto.getSeats(), orderDto.getCinemaId(), orderDto.getFilmId());
         int cinemaId = orderDto.getCinemaId();
@@ -95,13 +99,32 @@ public class OrderServiceImpl implements IOrderService {
                 if (res < 1) {
                     throw new ServiceException("更新座位状态信息失败");
                 }
-                return 1;
             }
+            return 1;
         } finally {
             releaseAllLocks();
         }
-        return 0;
     }
+
+    @Override
+    public List<OrderVo> selectAllOrders() {
+        Optional<UserInfo> currentUser = UserContext.getCurrentUser();
+        String username = currentUser.map(UserInfo::getUserName).orElse(null);
+        if (username == null) {
+            return null;
+        }
+        List<Orders> orders = ordersMapper.selectOrdersByUserName(username);
+        List<OrderVo> orderVoList = new ArrayList<>();
+        for (Orders order : orders) {
+            OrderVo orderVo = new OrderVo();
+            orderVo.setOrders(order);
+            FilmInfo filmInfo = filmService.selectFilmById(order.getFilmId());
+            orderVo.setFilmName(filmInfo.getFilmName());
+            orderVoList.add(orderVo);
+        }
+        return orderVoList;
+    }
+
     // 初始化锁
     private void InitSeatLocks(List<Seat> seats, int cinemaId, int filmId) {
         seatRLocks = new HashMap<>();

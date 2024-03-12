@@ -17,4 +17,21 @@
     <select id="checkDuplicateUserName" resultType="boolean">
         SELECT COUNT(*) > 0 FROM users WHERE username = #{userName}
     </select>
+    
+    <select id="selectUserByName" resultType="com.ithWind.domain.User" parameterType="String">
+        SELECT * FROM users WHERE userName = #{username}
+    </select>
+
+    <update id="UpdateUser" parameterType="com.ithWind.domain.dto.UserDto">
+        UPDATE users
+        <set>
+            <if test="userName != null">userName = #{userName},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="createTime != null">createTime = #{createTime},</if>
+            <if test="sex != null">sex = #{sex},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="birthday != null">birthday = #{birthday}</if>
+        </set>
+        WHERE userId = #{userId} <!-- 或者其他条件来唯一确定用户 -->
+    </update>
 </mapper>

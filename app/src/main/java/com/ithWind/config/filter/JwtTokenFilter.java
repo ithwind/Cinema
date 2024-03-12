@@ -26,7 +26,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         String TOKEN_PREFIX = "Bearer ";
         String requestURI = request.getRequestURI();
         // 如果是登录接口，直接放过
-        if (requestURI.startsWith("/user")) {
+        if (requestURI.startsWith("/user/login")) {
             chain.doFilter(request, response);
             return;
         }

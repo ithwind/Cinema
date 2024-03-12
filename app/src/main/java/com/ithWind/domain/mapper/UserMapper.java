@@ -1,10 +1,8 @@
 package com.ithWind.domain.mapper;
 
 import com.ithWind.domain.User;
-import com.ithWind.domain.req.LoginReq;
+import com.ithWind.domain.dto.UserDto;
 import org.apache.ibatis.annotations.Mapper;
-
-import java.util.SplittableRandom;
 
 @Mapper
 public interface UserMapper {
@@ -20,5 +18,14 @@ public interface UserMapper {
      * 判断用户名是否重复
      */
     boolean checkDuplicateUserName(String userName);
+    /**
+     * 通过用户名查找
+     */
+    User selectUserByName(String username);
+
+    /**
+     * 修改用户信息
+     */
+    int UpdateUser(UserDto userDto);
 }
 

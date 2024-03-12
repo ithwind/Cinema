@@ -1,13 +1,10 @@
-package com.ithWind.domain;
+package com.ithWind.domain.dto;
 
 import com.ruoyi.common.core.domain.BaseEntity;
 
 import java.util.Date;
 
-/**
- * 普通用户
- */
-public class User extends BaseEntity {
+public class UserDto extends BaseEntity {
     private static final long serialVersionUID = 1L;
     /**
      * 用户id
@@ -21,10 +18,7 @@ public class User extends BaseEntity {
      * 电话
      */
     private String phone;
-    /**
-     * 密码
-     */
-    private String password;
+
     /**
      * 注册时间
      */
@@ -42,18 +36,17 @@ public class User extends BaseEntity {
      */
     private Date birthday;
 
-    public User(int userId, String userName, String phone, String password, Date createTime, String sex, String address, Date birthday) {
+    public UserDto(int userId, String userName, String phone, Date createTime, String sex, String address, Date birthday) {
         this.userId = userId;
         this.userName = userName;
         this.phone = phone;
-        this.password = password;
         this.createTime = createTime;
         this.sex = sex;
         this.address = address;
         this.birthday = birthday;
     }
 
-    public User() {
+    public UserDto() {
     }
 
     public int getUserId() {
@@ -80,13 +73,6 @@ public class User extends BaseEntity {
         this.phone = phone;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public Date getCreateTime() {
         return createTime;
