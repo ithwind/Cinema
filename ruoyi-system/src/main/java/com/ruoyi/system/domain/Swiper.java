@@ -1,9 +1,12 @@
 package com.ruoyi.system.domain;
 
+import com.ruoyi.common.core.domain.BaseEntity;
+
 /**
  * 轮播图
  */
-public class Swiper {
+public class Swiper extends BaseEntity {
+    private static final long serialVersionUID = 1L;
     /**
      * 轮播图id
      */

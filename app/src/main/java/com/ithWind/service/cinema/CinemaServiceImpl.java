@@ -26,4 +26,9 @@ public class CinemaServiceImpl implements ICinemaService{
         }
         return cinemas;
     }
+
+    @Override
+    public List<Cinema> selectCinemaByCinemaName(String cinemaName) {
+        return cinemaService.selectCinemaByCinemaName(cinemaName);
+    }
 }

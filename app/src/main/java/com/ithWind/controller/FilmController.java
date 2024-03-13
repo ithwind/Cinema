@@ -32,4 +32,9 @@ public class FilmController extends BaseController {
     public AjaxResult getSeat(@PathVariable("cinemaId") int cinemaId, @PathVariable("filmId") int filmId){
         return success(filmService.getSeats(cinemaId, filmId));
     }
+
+    @GetMapping("/name/{filmName}")
+    public AjaxResult getFilmsByFilmName(@PathVariable("filmName") String filmName) {
+        return success(filmService.selectFilmByFilmName(filmName));
+    }
 }

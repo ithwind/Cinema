@@ -8,5 +8,7 @@ public interface ICinemaService {
     /**
      * 通过电影id获取所有影院信息
      */
-    public List<Cinema> getCinemaListByFilmId(int filmId);
+    List<Cinema> getCinemaListByFilmId(int filmId);
+
+    List<Cinema> selectCinemaByCinemaName(String cinemaName);
 }

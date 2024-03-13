@@ -50,21 +50,35 @@ public class SysFilmServiceImpl implements ISysFilmService {
 
     @Override
     public int updateFilmById(UpdateFilmDto param) {
+        String key = CacheConstants.FILM;
+        String filmKey = CacheConstants.FILM_BY_NAME + param.getFilmName();
         int result = 0;
         if (checkFilmNotEmpty(param.getFilmId())) {
             result = filmInfoMapper.updateFilmById(param);
+            redisCache.deleteObject(key);
+            redisCache.deleteObject(filmKey);
         }
         return result;
     }
 
     @Override
     public int insertFilm(FilmInfo filmInfo) {
-        return filmInfoMapper.insertFilm(filmInfo);
+        String key = CacheConstants.FILM;
+        int res = filmInfoMapper.insertFilm(filmInfo);
+        if (res != 0) {
+            redisCache.deleteObject(key);
+        }
+        return res;
     }
 
     @Override
     public int deleteFilms(int filmId) {
-        return filmInfoMapper.deleteFilms(filmId);
+        String key = CacheConstants.FILM;
+        int res = filmInfoMapper.deleteFilms(filmId);
+        if (res != 0) {
+            redisCache.deleteObject(key);
+        }
+        return res;
     }
 
     @Override

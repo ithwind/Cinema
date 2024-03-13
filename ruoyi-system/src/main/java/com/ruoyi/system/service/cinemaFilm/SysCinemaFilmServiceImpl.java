@@ -55,7 +55,12 @@ public class SysCinemaFilmServiceImpl implements ISysCinemaFilmService {
 
     @Override
     public int updateCinemaFilm(CinemaFilm cinemaFilm) {
-        return cinemaFilmMapper.updateCinemaFilm(cinemaFilm);
+        String key = CacheConstants.CINEMA_FILM_BY_ID + cinemaFilm.getCinemaFilmId();
+        int res = cinemaFilmMapper.updateCinemaFilm(cinemaFilm);
+        if (res != 0) {
+            redisCache.deleteObject(key);
+        }
+        return res;
     }
 
     @Override

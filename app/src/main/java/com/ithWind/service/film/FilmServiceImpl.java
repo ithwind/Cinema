@@ -66,4 +66,9 @@ public class FilmServiceImpl implements IFilmService{
     public List<Seat> getSeats(int cinemaId, int filmId) {
         return seatMapper.getSeats(cinemaId, filmId);
     }
+
+    @Override
+    public List<FilmInfo> selectFilmByFilmName(String filmName) {
+        return filmService.selectFilmsByFilmName(filmName);
+    }
 }

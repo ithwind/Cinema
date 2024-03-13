@@ -77,7 +77,12 @@ public class SysOrderServiceImpl implements ISysOrderService{
         if (redisCache.getCacheObject(key) != null) {
             return redisCache.getCacheObject(key);
         }
-        int boxOffice = ordersMapper.selectBoxOfficeByFilmId(filmId);
+        int boxOffice;
+        if (ordersMapper.selectBoxOfficeByFilmId(filmId) != 0) {
+            boxOffice = ordersMapper.selectBoxOfficeByFilmId(filmId);
+        } else {
+            boxOffice = 0;
+        }
         redisCache.setCacheObject(key, boxOffice);
         return boxOffice;
     }

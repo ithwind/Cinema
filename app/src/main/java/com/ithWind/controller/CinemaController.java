@@ -22,4 +22,9 @@ public class CinemaController extends BaseController {
         return success(cinemaService.getCinemaListByFilmId(filmId));
     }
 
+    @GetMapping("/name/{cinemaName}")
+    public AjaxResult getCinemasByCinemaName(@PathVariable("cinemaName") String cinemaName) {
+        return success(cinemaService.selectCinemaByCinemaName(cinemaName));
+    }
+
 }

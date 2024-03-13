@@ -24,9 +24,10 @@
     <select id="selectOrdersByUserName" parameterType="String" resultMap="orderResultMap">
         SELECT * FROM orders WHERE user_name = #{userName}
     </select>
-    <!-- 查询指定电影id的订单总价（ticket_price * ticket_num） -->
-    <select id="selectBoxOfficeByFilmId" resultType="int">
-        SELECT SUM(ticket_price * ticket_num) FROM orders WHERE film_id = #{filmId}
+    <!-- 查询指定电影id的订单总价（ticket_price * ticket_num），可返回null -->
+    <select id="selectBoxOfficeByFilmId" resultType="Integer">
+        SELECT COALESCE(SUM(ticket_price * ticket_num), 0) AS box_office
+        FROM orders WHERE film_id = #{filmId}
     </select>
 
     <!-- 新增订单 -->

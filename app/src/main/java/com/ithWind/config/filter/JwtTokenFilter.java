@@ -27,7 +27,8 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         String requestURI = request.getRequestURI();
         // 如果是登录接口，直接放过
         if (requestURI.startsWith("/user/login") || requestURI.startsWith("/user/register") ||
-                requestURI.startsWith("/user/film") || requestURI.startsWith("/user/cinema")) {
+                requestURI.startsWith("/user/film") || requestURI.startsWith("/user/cinema") ||
+        requestURI.startsWith("/user/swiper")) {
             chain.doFilter(request, response);
             return;
         }

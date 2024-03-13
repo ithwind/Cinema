@@ -22,4 +22,11 @@ public interface IFilmService {
      * @param filmId 电影Id
      */
     List<Seat> getSeats(int cinemaId, int filmId);
+
+    /**
+     * 通过电影名查询电影
+     * @param filmName 电影名
+     * @return 返回同电影名的列表
+     */
+    List<FilmInfo> selectFilmByFilmName(String filmName);
 }

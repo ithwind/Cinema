@@ -42,8 +42,10 @@ public class SysSwiperServiceImpl implements ISysSwiperService {
     @Override
     public int updateSwiper(Swiper swiper) {
         String key = CacheConstants.SWIPER_ID + swiper.getSwiperId();
+        String allKey = CacheConstants.SWIPER_ALL;
         if (redisCache.getCacheObject(key) != null) {
             redisCache.deleteObject(key);
+            redisCache.deleteObject(allKey);
         }
         return swiperMapper.updateSwiper(swiper);
     }
@@ -51,9 +53,11 @@ public class SysSwiperServiceImpl implements ISysSwiperService {
     @Override
     public int deleteSwiperById(int swiperId) {
         String key = CacheConstants.SWIPER_ID + swiperId;
+        String allKey = CacheConstants.SWIPER_ALL;
         if (redisCache.getCacheObject(key) != null) {
             redisCache.deleteObject(key);
         }
+        redisCache.deleteObject(allKey);
         return swiperMapper.deleteSwiperById(swiperId);
     }
 
