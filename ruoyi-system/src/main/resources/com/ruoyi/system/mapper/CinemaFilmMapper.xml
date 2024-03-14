@@ -42,4 +42,8 @@
     <select id="selectFilmInfosByCinemaId" resultType="int">
         SELECT filmId FROM cinema_film WHERE cinemaId = #{cinemaId};
     </select>
+
+    <select id="selectCinemaFilmByFilmIdAndCinemaId" resultType="com.ruoyi.system.domain.CinemaFilm">
+        SELECT * FROM cinema_film WHERE filmId = #{filmId} AND cinemaId = #{cinemaId}
+    </select>
 </mapper>

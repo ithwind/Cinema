@@ -1,14 +1,12 @@
 package com.ithWind.service.film;
 
-import com.ithWind.service.cinema.ICinemaService;
-import com.ruoyi.common.core.redis.RedisCache;
+import com.ithWind.domain.dto.FilmInfoQueryDto;
+import com.ruoyi.system.domain.CinemaFilm;
 import com.ruoyi.system.domain.FilmInfo;
 import com.ruoyi.system.domain.Seat;
 import com.ruoyi.system.domain.dto.FilmInfoDto;
 import com.ruoyi.system.mapper.CinemaFilmMapper;
-import com.ruoyi.system.mapper.FilmInfoMapper;
 import com.ruoyi.system.mapper.SeatMapper;
-import com.ruoyi.system.service.cinema.ISysCinemaService;
 import com.ruoyi.system.service.film.ISysFilmService;
 import org.springframework.stereotype.Service;
 
@@ -52,14 +50,18 @@ public class FilmServiceImpl implements IFilmService{
     }
 
     @Override
-    public List<FilmInfo> getFilmsByCinemaId(int cinemaId) {
+    public List<FilmInfoQueryDto> getFilmsByCinemaId(int cinemaId) {
         List<Integer> filmIds = cinemaFilmMapper.selectFilmInfosByCinemaId(cinemaId);
-        List<FilmInfo> filmInfos = new ArrayList<>();
+        List<FilmInfoQueryDto> filmInfoQueryDtos = new ArrayList<>();
         for (int filmId : filmIds) {
             FilmInfo filmInfo = filmService.selectFilmById(filmId);
-            filmInfos.add(filmInfo);
+            FilmInfoQueryDto filmInfoQueryDto = new FilmInfoQueryDto();
+            CinemaFilm cinemaFilm = cinemaFilmMapper.selectCinemaFilmByFilmIdAndCinemaId(cinemaId, filmInfo.getFilmId());
+            filmInfoQueryDto.setCinemaFilm(cinemaFilm);
+            filmInfoQueryDto.setFilmInfo(filmInfo);
+            filmInfoQueryDtos.add(filmInfoQueryDto);
         }
-        return filmInfos;
+        return filmInfoQueryDtos;
     }
 
     @Override

@@ -11,4 +11,6 @@ public interface ICinemaService {
     List<Cinema> getCinemaListByFilmId(int filmId);
 
     List<Cinema> selectCinemaByCinemaName(String cinemaName);
+
+    List<Cinema> selectAllCinema();
 }

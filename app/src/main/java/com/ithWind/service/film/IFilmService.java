@@ -1,5 +1,6 @@
 package com.ithWind.service.film;
 
+import com.ithWind.domain.dto.FilmInfoQueryDto;
 import com.ruoyi.system.domain.FilmInfo;
 import com.ruoyi.system.domain.Seat;
 import com.ruoyi.system.domain.dto.FilmInfoDto;
@@ -14,7 +15,7 @@ public interface IFilmService {
     /**
      * 通过影院id获取电影
      */
-    List<FilmInfo> getFilmsByCinemaId(int cinemaId);
+    List<FilmInfoQueryDto> getFilmsByCinemaId(int cinemaId);
 
     /**
      * 获取当前影院和电影的座位信息

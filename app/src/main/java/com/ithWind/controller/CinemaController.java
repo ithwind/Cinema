@@ -27,4 +27,9 @@ public class CinemaController extends BaseController {
         return success(cinemaService.selectCinemaByCinemaName(cinemaName));
     }
 
+    @GetMapping("/list")
+    public AjaxResult getCinemaList() {
+        return success(cinemaService.selectAllCinema());
+    }
+
 }

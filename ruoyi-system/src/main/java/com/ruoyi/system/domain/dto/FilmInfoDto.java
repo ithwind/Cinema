@@ -18,6 +18,9 @@ public class FilmInfoDto extends FilmInfo {
         this.boxOffice = boxOffice;
     }
 
+    public FilmInfoDto() {
+    }
+
     public int getBoxOffice() {
         return boxOffice;
     }

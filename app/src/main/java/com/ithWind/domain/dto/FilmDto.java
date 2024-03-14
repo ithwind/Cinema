@@ -8,6 +8,7 @@ import com.ruoyi.system.domain.Seat;
  * 用于返回当前电影座位
  */
 public class FilmDto extends BaseEntity {
+    private static final long serialVersionUID = 1L;
     /**
      * 电影信息
      */

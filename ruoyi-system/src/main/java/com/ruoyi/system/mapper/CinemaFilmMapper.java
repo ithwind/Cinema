@@ -39,4 +39,9 @@ public interface CinemaFilmMapper {
      * 通过影院id查询电影
      */
     List<Integer> selectFilmInfosByCinemaId(@Param("cinemaId") int cinemaId);
+
+    /**
+     * 通过电影id和影院id查询
+     */
+    CinemaFilm selectCinemaFilmByFilmIdAndCinemaId(@Param("cinemaId")int cinemaId, @Param("filmId") int filmId);
 }
